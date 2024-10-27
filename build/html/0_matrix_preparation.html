@@ -41,7 +41,9 @@
 <h2>Trace and Eigenvalues<a class="headerlink" href="#trace-and-eigenvalues" title="Link to this heading">¶</a></h2>
 <p>We assume all matrices are conformable (e.g. their dimensions are suitable for defined operations).</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)\)</span></p>
+<p><strong>Proof</strong>: <span class="math notranslate nohighlight">\(\text{tr}(A+B) = \sum_{i=1}^n A_{ii} + B_{ii} = \sum_{i = 1}^n A_{ii} + \sum_{i = 1^n} B_{ii} = \text{tr}(A) + \text{tr}(B)\)</span>.</p>
+</li>
 <li><p><span class="math notranslate nohighlight">\(\text{tr}(AC) = \text{tr}(CA)\)</span></p>
 <p><strong>Proof</strong>: Since trace is only defined on square matrices, without loss of generality, suppose <span class="math notranslate nohighlight">\(A, C\in\mathbb{R}^{n\times n}\)</span>. Then we have</p>
 <div class="math notranslate nohighlight">
@@ -54,8 +56,30 @@
 \[
   \text{tr}(A)=\sum_{i=1}^n\lambda_i \text{ and } \det(A)=\prod_{i = 1}^n\lambda_i
   \]</div>
-<p><strong>Proof</strong>: We prove this by <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_polynomial#:~:text=In%20linear%20algebra%2C%20the%20characteristic,the%20matrix%20among%20its%20coefficients.">characteristic polynomial</a>. By expanding the</p>
+<p><strong>Proof</strong>: We prove this by <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_polynomial#:~:text=In%20linear%20algebra%2C%20the%20characteristic,the%20matrix%20among%20its%20coefficients.">characteristic polynomial</a>. By expanding the characteristic polynomial by definition, we could get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+  \det(A - t I_n) = p(t) &amp; = (-1)^n(t - \lambda_1)(t-\lambda_2)\cdots(t-\lambda_n)\\
+  &amp; = (-1)(t - \lambda_1)(-1)(t - \lambda_2)\cdots(-1)(t - \lambda_n) \\
+  &amp; = (\lambda_1 - t)(\lambda_2 - t)\cdots(\lambda_n - t)
+  \end{aligned}
+  \end{split}\]</div>
+<p>Then we could set <span class="math notranslate nohighlight">\(t = 0\)</span> because it is just a variable, then we could get <span class="math notranslate nohighlight">\(\det(A)=\prod_i\lambda_i\)</span>.</p>
+<p>For trace of <span class="math notranslate nohighlight">\(A\)</span>, we write the characteristic polynomial in its vanilla format as</p>
+<div class="math notranslate nohighlight">
+\[
+  p(t) = \det(A - tI_n) = (A_{11} - t)(A_{22} - t)\cdots(A_{nn} - t) + \cdots
+  \]</div>
+<p>Then based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Vieta%27s_formulas">Vieta’s formulas</a>, the sum of the roots of the polynomial is the opposite of coefficient of its second highest terms. In our case, we consider the coefficient of <span class="math notranslate nohighlight">\(t^{n-1}\)</span> terms and we ignore other terms. Notice that the after expanding the polynomial, each <span class="math notranslate nohighlight">\(\lambda_i\)</span> will multiply <span class="math notranslate nohighlight">\(-t\)</span> for <span class="math notranslate nohighlight">\(n - 1\)</span> times, so we could find that the coefficient of <span class="math notranslate nohighlight">\(t^{n - 1}\)</span> is <span class="math notranslate nohighlight">\(\sum_i-A_{ii}\)</span>, which is the <span class="math notranslate nohighlight">\(-\text{tr}(A)\)</span>. Since the roots of the <span class="math notranslate nohighlight">\(p(t)\)</span> are eigenvalues <span class="math notranslate nohighlight">\(\lambda_1,\dots,\lambda_n\)</span>, we could conclude that <span class="math notranslate nohighlight">\(\sum_{i}\lambda_i=\text{tr}(A)\)</span>.</p>
 </li>
+<li><p><em>(Principal axis theorem)</em> If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> symmetric matrix, then there exists an orthogonal matrix <span class="math notranslate nohighlight">\(T=(t_1, t_2, t_3, \dots, t_n)\)</span> such that <span class="math notranslate nohighlight">\(T'AT=\Lambda\)</span>, where <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)\)</span>. Here the <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(At_i=\lambda_i t_i\)</span>. The eigenvectors <span class="math notranslate nohighlight">\(t_i\)</span> form an orthogonal basis for <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. The factorization <span class="math notranslate nohighlight">\(A = T\Lambda T'\)</span> is known as the spectral decomposition of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+<p>In next three results, we assume that <span class="math notranslate nohighlight">\(A\)</span> is symmetric.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{tr}(A^s) = \sum_{i=1}^n\lambda_i^s\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is nonsingular, the eigenvalues of <span class="math notranslate nohighlight">\(A^{-1}\)</span> are <span class="math notranslate nohighlight">\(\lambda^{-1}_i\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>, and hence <span class="math notranslate nohighlight">\(\text{tr}(A^{-1})=\sum_{i=1}^n\lambda_i^{-1}\)</span>.</p></li>
+<li><p>The eigenvalues of <span class="math notranslate nohighlight">\((I_n + cA)\)</span> are <span class="math notranslate nohighlight">\(1 + c\lambda_i\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>.</p></li>
 </ul>
 </section>
 <section id="rank">
