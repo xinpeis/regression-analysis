@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Matrix Preparation}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Idempotent Matrix}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Trace and Eigenvalues}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Linear Regression}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Least Squares Estimator}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Unbiased Estimator}{3}{section.2.2}%

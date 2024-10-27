@@ -1,0 +1,5 @@
+PWD f:/projects/regression-analysis-notes/build/latex
+INPUT c:/texlive/2024/texmf.cnf
+INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT f:/projects/regression-analysis-notes/build/latex/regressionanalysisnotes.tex
