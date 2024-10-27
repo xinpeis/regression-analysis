@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Regression Analysis Notes (for UCSD Math 282)
+Regression Analysis (for UCSD Math 282)
 =====================================================
 
 
@@ -13,8 +13,10 @@ Regression Analysis Notes (for UCSD Math 282)
 .. toctree::
    :maxdepth: 2
 
-   matrix_preparation
-   linear_regression
+   0_matrix_preparation
+   1_vectors_of_random_variables
+   2_multivariate_normal_distribution
+   3_linear_regression
 
 
 

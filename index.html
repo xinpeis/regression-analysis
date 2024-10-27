@@ -5,15 +5,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Regression Analysis Notes (for UCSD Math 282) &#8212; Regression Analysis Notes 0.0.1 documentation</title>
+    <title>Regression Analysis (for UCSD Math 282) &#8212; Regression Analysis Notes 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=61cd365c" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=d45e8c67"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Matrix Preparation" href="matrix_preparation.html" />
+    <link rel="next" title="Matrix Preparation" href="0_matrix_preparation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,18 +33,24 @@
 
           <div class="body" role="main">
             
-  <section id="regression-analysis-notes-for-ucsd-math-282">
-<h1>Regression Analysis Notes (for UCSD Math 282)<a class="headerlink" href="#regression-analysis-notes-for-ucsd-math-282" title="Link to this heading">¶</a></h1>
+  <section id="regression-analysis-for-ucsd-math-282">
+<h1>Regression Analysis (for UCSD Math 282)<a class="headerlink" href="#regression-analysis-for-ucsd-math-282" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="matrix_preparation.html">Matrix Preparation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="matrix_preparation.html#idempotent-matrix">Idempotent Matrix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="matrix_preparation.html#trace-and-eigenvalues">Trace and Eigenvalues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_matrix_preparation.html">Matrix Preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#trace-and-eigenvalues">Trace and Eigenvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#rank">Rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#positive-semidefinite-matrices">Positive-Semidefinite Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#positive-definite-matrices">Positive-Definite Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#idempotent-matrices">Idempotent Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0_matrix_preparation.html#vector-differentiation">Vector Differentiation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="linear_regression.html#least-squares-estimator">Least Squares Estimator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear_regression.html#unbiased-estimator">Unbiased Estimator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_vectors_of_random_variables.html">Vector of Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_multivariate_normal_distribution.html">Multivariate Normal Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_linear_regression.html">Linear Regression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_linear_regression.html#least-squares-estimator">Least Squares Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_linear_regression.html#unbiased-estimator">Unbiased Estimator</a></li>
 </ul>
 </li>
 </ul>
@@ -67,15 +75,17 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="matrix_preparation.html">Matrix Preparation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_matrix_preparation.html">Matrix Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_vectors_of_random_variables.html">Vector of Random Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_multivariate_normal_distribution.html">Multivariate Normal Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_linear_regression.html">Linear Regression</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="matrix_preparation.html" title="next chapter">Matrix Preparation</a></li>
+      <li>Next: <a href="0_matrix_preparation.html" title="next chapter">Matrix Preparation</a></li>
   </ul></li>
 </ul>
 </div>
