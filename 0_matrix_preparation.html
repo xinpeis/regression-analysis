@@ -39,6 +39,8 @@
 <p>In this chapter, we will list some important concepts and properties of linear algebra we need for regression analysis and give proof for each of them.</p>
 <section id="trace-and-eigenvalues">
 <h2>Trace and Eigenvalues<a class="headerlink" href="#trace-and-eigenvalues" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: The trace of a square matrix <span class="math notranslate nohighlight">\(A\)</span>, denoted by <span class="math notranslate nohighlight">\(\text{tr}(A)\)</span>, is the sum of the elements on its main diagonal. It is only defined for a square matrix <span class="math notranslate nohighlight">\((n\times n)\)</span>.</p>
+<p><strong>Definition</strong>: Consider an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> and a nonzero vector <span class="math notranslate nohighlight">\(v\in \mathbb{R}^n\)</span>. If multiplying <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(v\)</span> (denoted by <span class="math notranslate nohighlight">\(Av\)</span>) simply scales <span class="math notranslate nohighlight">\(v\)</span> by a factor of <span class="math notranslate nohighlight">\(\lambda\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is a scalar, then <span class="math notranslate nohighlight">\(v\)</span> is called an eigenvector of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(\lambda\)</span> is the corresponding eigenvalue. This relation can be expressed as <span class="math notranslate nohighlight">\(Av = \lambda v\)</span>.</p>
 <p>We assume all matrices are conformable (e.g. their dimensions are suitable for defined operations).</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)\)</span></p>
@@ -51,16 +53,12 @@
   \text{tr}(AC) = \sum_{i=1}^n(AC)_{ii} = \sum_{i=1}^n\sum_{k=1}^nA_{ik}C_{ki} = \sum_{k=1}^n\sum_{i=1}^nC_{ki}A_{ik} = \sum_{k=1}^n(CA)_{kk} = \text{tr}(CA)
   \]</div>
 </li>
-<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix with eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> where <span class="math notranslate nohighlight">\((i = 1, 2, \dots, n)\)</span>, then</p>
-<div class="math notranslate nohighlight">
-\[
-  \text{tr}(A)=\sum_{i=1}^n\lambda_i \text{ and } \det(A)=\prod_{i = 1}^n\lambda_i
-  \]</div>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix with eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> where <span class="math notranslate nohighlight">\((i = 1, 2, \dots, n)\)</span>, then <span class="math notranslate nohighlight">\(\text{tr}(A)=\sum_{i=1}^n\lambda_i \text{ and } \det(A)=\prod_{i = 1}^n\lambda_i\)</span>.</p>
 <p><strong>Proof</strong>: We prove this by <a class="reference external" href="https://en.wikipedia.org/wiki/Characteristic_polynomial#:~:text=In%20linear%20algebra%2C%20the%20characteristic,the%20matrix%20among%20its%20coefficients.">characteristic polynomial</a>. By expanding the characteristic polynomial by definition, we could get</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
   \begin{aligned}
-  \det(A - t I_n) = p(t) &amp; = (-1)^n(t - \lambda_1)(t-\lambda_2)\cdots(t-\lambda_n)\\
+  p(t) = \det(A - t I_n) &amp; = (-1)^n(t - \lambda_1)(t-\lambda_2)\cdots(t-\lambda_n)\\
   &amp; = (-1)(t - \lambda_1)(-1)(t - \lambda_2)\cdots(-1)(t - \lambda_n) \\
   &amp; = (\lambda_1 - t)(\lambda_2 - t)\cdots(\lambda_n - t)
   \end{aligned}
@@ -73,7 +71,9 @@
   \]</div>
 <p>Then based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Vieta%27s_formulas">Vieta’s formulas</a>, the sum of the roots of the polynomial is the opposite of coefficient of its second highest terms. In our case, we consider the coefficient of <span class="math notranslate nohighlight">\(t^{n-1}\)</span> terms and we ignore other terms. Notice that the after expanding the polynomial, each <span class="math notranslate nohighlight">\(\lambda_i\)</span> will multiply <span class="math notranslate nohighlight">\(-t\)</span> for <span class="math notranslate nohighlight">\(n - 1\)</span> times, so we could find that the coefficient of <span class="math notranslate nohighlight">\(t^{n - 1}\)</span> is <span class="math notranslate nohighlight">\(\sum_i-A_{ii}\)</span>, which is the <span class="math notranslate nohighlight">\(-\text{tr}(A)\)</span>. Since the roots of the <span class="math notranslate nohighlight">\(p(t)\)</span> are eigenvalues <span class="math notranslate nohighlight">\(\lambda_1,\dots,\lambda_n\)</span>, we could conclude that <span class="math notranslate nohighlight">\(\sum_{i}\lambda_i=\text{tr}(A)\)</span>.</p>
 </li>
-<li><p><em>(Principal axis theorem)</em> If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> symmetric matrix, then there exists an orthogonal matrix <span class="math notranslate nohighlight">\(T=(t_1, t_2, t_3, \dots, t_n)\)</span> such that <span class="math notranslate nohighlight">\(T'AT=\Lambda\)</span>, where <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)\)</span>. Here the <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(At_i=\lambda_i t_i\)</span>. The eigenvectors <span class="math notranslate nohighlight">\(t_i\)</span> form an orthogonal basis for <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. The factorization <span class="math notranslate nohighlight">\(A = T\Lambda T'\)</span> is known as the spectral decomposition of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><em>(Principal axis theorem)</em> If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> symmetric matrix, then there exists an orthogonal matrix <span class="math notranslate nohighlight">\(T=(t_1, t_2, \dots, t_n)\)</span> such that <span class="math notranslate nohighlight">\(T'AT=\Lambda\)</span>, where <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)\)</span>. Here the <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>, and <span class="math notranslate nohighlight">\(At_i=\lambda_i t_i\)</span>. The eigenvectors <span class="math notranslate nohighlight">\(t_i\)</span> form an orthogonal basis for <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. The factorization <span class="math notranslate nohighlight">\(A = T\Lambda T'\)</span> is known as the spectral decomposition of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Proof</strong>:</p>
+</li>
 </ul>
 <p>In next three results, we assume that <span class="math notranslate nohighlight">\(A\)</span> is symmetric.</p>
 <ul class="simple">
@@ -84,15 +84,62 @@
 </section>
 <section id="rank">
 <h2>Rank<a class="headerlink" href="#rank" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: The rank of a matrix <span class="math notranslate nohighlight">\(A\)</span> is the dimension of the vector space generated (or spanned) by its columns. This corresponds to the maximal number of linearly independent columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are conformable matrices, then <span class="math notranslate nohighlight">\(\text{rank}(AB)\leq\min(\text{rank}(A), \text{rank}(B))\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is any matrix, and <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are any conformable nonsingular matrices, then <span class="math notranslate nohighlight">\(\text{rank}(PAQ) = \text{rank}(A)\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(A\)</span> be any <span class="math notranslate nohighlight">\(m\times n\)</span> matrix such that <span class="math notranslate nohighlight">\(r=\text{rank}(A)\)</span> and <span class="math notranslate nohighlight">\(s = \text{nullity}(A)\)</span>, [the dimension of <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>, the null space or kernel of <span class="math notranslate nohighlight">\(A\)</span>, i.e., the dimension fo <span class="math notranslate nohighlight">\(\{x:Ax=0\}\)</span>]. Then <span class="math notranslate nohighlight">\(r + s = n\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{rank}(A) = \text{rank}(A') = \text{rank}(A'A) = \text{rank}(AA')\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\mathcal{C}(A)\)</span> is the column space of <span class="math notranslate nohighlight">\(A\)</span> (the space spanned by the columns of <span class="math notranslate nohighlight">\(A\)</span>), then <span class="math notranslate nohighlight">\(\mathcal{C}(A'A)=\mathcal{C}(A')\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is symmetric, then <span class="math notranslate nohighlight">\(\text{rank}(A)\)</span> is equal to the number of nonzero eigenvalues.</p></li>
+<li><p>Any <span class="math notranslate nohighlight">\(n\times n\)</span> symmetric matrix <span class="math notranslate nohighlight">\(A\)</span> has a set of <span class="math notranslate nohighlight">\(n\)</span> orthonormal eigenvectors, and <span class="math notranslate nohighlight">\(\mathcal{C}(A)\)</span> is the space spanned by those eigenvectors corresponding to nonzero eigenvalues.</p></li>
+</ul>
 </section>
 <section id="positive-semidefinite-matrices">
 <h2>Positive-Semidefinite Matrices<a class="headerlink" href="#positive-semidefinite-matrices" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: A symmetric matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be positive-semidefinite (p.s.d) if and only if  <span class="math notranslate nohighlight">\(x'Ax\geq 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<ul class="simple">
+<li><p>The eigenvalues of a p.s.d. matrix are nonnegative.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is p.s.d., then <span class="math notranslate nohighlight">\(\text{tr}(A)\geq 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is p.s.d. of rank <span class="math notranslate nohighlight">\(r\)</span> if and only if there exists an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(R\)</span> of rank <span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(A = RR'\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> p.s.d. matrix of rank <span class="math notranslate nohighlight">\(r\)</span>, then there exists an <span class="math notranslate nohighlight">\(n\times r\)</span> matrix <span class="math notranslate nohighlight">\(S\)</span> of rank <span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(S'AS = I_r\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is p.s.d., then <span class="math notranslate nohighlight">\(X'AX = 0 \implies AX = 0\)</span>.</p></li>
+</ul>
 </section>
 <section id="positive-definite-matrices">
 <h2>Positive-Definite Matrices<a class="headerlink" href="#positive-definite-matrices" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: A symmetric matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be positive-definite (p.d.) if  <span class="math notranslate nohighlight">\(x'Ax &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x\neq 0\)</span>.</p>
+<ul class="simple">
+<li><p>The eigenvalues of a p.d. matrix <span class="math notranslate nohighlight">\(A\)</span> are all positive; thus <span class="math notranslate nohighlight">\(A\)</span> is also nonsingular.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is p.d. if and only if there exists a nonsingular <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(A = RR'\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is p.d., then so if <span class="math notranslate nohighlight">\(A^{-1}\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is p.d., then <span class="math notranslate nohighlight">\(\text{rank}(CAC')=\text{rank}(C)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> p.d. matrix and <span class="math notranslate nohighlight">\(C\)</span> is <span class="math notranslate nohighlight">\(p\times n\)</span> of rank <span class="math notranslate nohighlight">\(p\)</span>, then <span class="math notranslate nohighlight">\(CAC'\)</span> is p.d.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(n\times p\)</span> of rank <span class="math notranslate nohighlight">\(p\)</span>, then <span class="math notranslate nohighlight">\(X'X\)</span> is p.d.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is p.d. if and only if all the leading minor determinants of <span class="math notranslate nohighlight">\(A\)</span> [including <span class="math notranslate nohighlight">\(\det(A)\)</span> itself] are positive.</p></li>
+<li><p>The diagonal elements of a p.d. matrix are all positive.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> p.d. matrix and <span class="math notranslate nohighlight">\(B\)</span> is an <span class="math notranslate nohighlight">\(n\times n\)</span> symmetric matrix, then <span class="math notranslate nohighlight">\(A - tB\)</span> is p.d. for <span class="math notranslate nohighlight">\(|t|\)</span> sufficiently small.</p></li>
+<li><p><em>(Cholesky decomposition)</em> If <span class="math notranslate nohighlight">\(A\)</span> is p.d., there exists a unique upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span> with positive diagonal elements such that <span class="math notranslate nohighlight">\(A=RR'\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(L\)</span> is positive definite, then for any <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(\max_{h:h\neq 0}\{\frac{(h'b)^2}{h'Lh}\}=b'L^{-1}b\)</span>.</p></li>
+<li><p><em>(Square root of a positive-definite matrix)</em> If <span class="math notranslate nohighlight">\(A\)</span> is p.d., there exists a p.d. square root <span class="math notranslate nohighlight">\(A^{1/2}\)</span> such that <span class="math notranslate nohighlight">\((A^{1/2})^2 = A\)</span>.</p></li>
+</ul>
 </section>
 <section id="idempotent-matrices">
 <h2>Idempotent Matrices<a class="headerlink" href="#idempotent-matrices" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: A matrix <span class="math notranslate nohighlight">\(P\)</span> is idempotent if <span class="math notranslate nohighlight">\(P^2 = P\)</span>.</p>
+<p><strong>Definition</strong>: A symmetric idempotent matrix is called a <em>projection matrix</em>.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(P\)</span> is symmetric, then <span class="math notranslate nohighlight">\(P\)</span> is idempotent of rank <span class="math notranslate nohighlight">\(r\)</span> if and only if it has <span class="math notranslate nohighlight">\(r\)</span> eigenvalues equal to unity and <span class="math notranslate nohighlight">\(n - r\)</span> eigenvalues equal to zero.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(P\)</span> is a projection matrix, then <span class="math notranslate nohighlight">\(\text{tr}(P)=\text{rank}(P)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(P\)</span> is idempotent, so is <span class="math notranslate nohighlight">\(I - P\)</span>.</p></li>
+<li><p>Projection matrices are positive definite.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(P_1, P_2\)</span> are projection matrices and <span class="math notranslate nohighlight">\(P_1 - P_2\)</span> is p.s.d., then</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(P_1P_2 = P_2P_1 = P_2\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_1 - P_2\)</span> is a projection matrix.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section id="vector-differentiation">
 <h2>Vector Differentiation<a class="headerlink" href="#vector-differentiation" title="Link to this heading">¶</a></h2>

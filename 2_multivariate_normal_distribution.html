@@ -11,6 +11,8 @@
     <script src="_static/documentation_options.js?v=d45e8c67"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Linear Regression" href="3_linear_regression.html" />
@@ -34,6 +36,64 @@
             
   <section class="tex2jax_ignore mathjax_ignore" id="multivariate-normal-distribution">
 <h1>Multivariate Normal Distribution<a class="headerlink" href="#multivariate-normal-distribution" title="Link to this heading">¶</a></h1>
+<section id="moment-generating-function">
+<h2>Moment Generating Function<a class="headerlink" href="#moment-generating-function" title="Link to this heading">¶</a></h2>
+<p><strong>Definition</strong>: Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(t\)</span> be <span class="math notranslate nohighlight">\(n\times 1\)</span> random vector and vector of constants, respectively. Then the <em>characteristic function</em> of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_X(t)=\mathbb{E}(e^{it'X}).
+\]</div>
+<p>The <em>moment generating function (M.G.F.)</em> of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+M_X(t) = \mathbb{E}(e^{t'X}).
+\]</div>
+<p><strong>Property 1.1</strong>: Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be <span class="math notranslate nohighlight">\(n\times 1\)</span> random vectors. <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent if and only if</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{X + Y}(t) = \phi_X(t)\phi_Y(t)
+\]</div>
+<p>if and only if</p>
+<div class="math notranslate nohighlight">
+\[
+M_{X + Y}(t) = M_X(t)M_Y(t).
+\]</div>
+<p><strong>Property 1.2</strong>: Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be random vectors. <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent if and only if</p>
+<div class="math notranslate nohighlight">
+\[
+\phi_{X, Y}(t_1, t_2) = \phi_X(t_1)\phi_Y(t_2)
+\]</div>
+<p>if and only if</p>
+<div class="math notranslate nohighlight">
+\[
+M_{X, Y}(t_1, t_2) = M_X(t_1)M_Y(t_2).
+\]</div>
+<p><em>Note</em>: <span class="math notranslate nohighlight">\(\phi_{X, Y}(t_1, t_2) = \mathbb{E}(e^{i(t_1'X + t_2'Y)})\)</span>, and <span class="math notranslate nohighlight">\(M_{X, Y}(t_1, t_2) = \mathbb{E}(e^{t_1'X + t_2'Y})\)</span>.</p>
+<p><strong>Fact</strong>: If <span class="math notranslate nohighlight">\(X\sim\chi_r^2\)</span>, the M.G.F. of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+M_X(t) = \frac{1}{(1 - 2t)^{r/2}}, t&lt;\frac{1}{2}.
+\]</div>
+<p><strong>Example</strong>: Let <span class="math notranslate nohighlight">\(Q_1\sim \chi_{r_1}^2\)</span> and <span class="math notranslate nohighlight">\(Q_2\sim \chi_{r_2}^2\)</span> where <span class="math notranslate nohighlight">\((r_1 &gt; r_2)\)</span>. If <span class="math notranslate nohighlight">\(Q = Q_1 - Q_2\)</span> is independent of <span class="math notranslate nohighlight">\(Q_2\)</span>, show that <span class="math notranslate nohighlight">\(Q \sim \chi_{r_1-r_2}^2\)</span>.</p>
+<p><strong>Solution</strong>: Since <span class="math notranslate nohighlight">\(Q\)</span> is independent of <span class="math notranslate nohighlight">\(Q_2\)</span> and <span class="math notranslate nohighlight">\(Q_1 = Q + Q2\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
+M_{Q_1}(t) = M_Q(t)M_{Q_2}(t)\implies \frac{1}{(1 - 2t)^{r_1/2}} = M_Q(t)\frac{1}{(1 - 2t)^{r_2/2}}.
+\]</div>
+<p>Then we could derive that <span class="math notranslate nohighlight">\(M_Q(t) = \frac{1}{(1 - 2t)^{(r_1 - r_2)/2}}\)</span>, which is the M.G.F. of <span class="math notranslate nohighlight">\(\chi_{r_1 - r_2}^2\)</span>. Therefore, <span class="math notranslate nohighlight">\(Q\sim \chi_{r_1-r_2}^2\)</span> by definition of M.G.F.</p>
+</section>
+<section id="multivariate-normal-distributions">
+<h2>Multivariate Normal Distributions<a class="headerlink" href="#multivariate-normal-distributions" title="Link to this heading">¶</a></h2>
+<p><strong>Definition 2.1</strong>: Let <span class="math notranslate nohighlight">\(Y\)</span> be an <span class="math notranslate nohighlight">\(n\times 1\)</span> random vector. We say <span class="math notranslate nohighlight">\(Y\sim \mathcal{N}_n(\mu, \Sigma)\)</span> if <span class="math notranslate nohighlight">\(Y\)</span> has the density</p>
+<div class="math notranslate nohighlight">
+\[
+f(y) = f(y_1, y_2, \dots, y_n) = k^{-1}\exp\Bigg\{-\frac{1}{2}(y - \mu)'\Sigma^{-1}(y - \mu)\Bigg\}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k = (2\pi)^{n/2}\det(\Sigma)^{1/2}\)</span>, <span class="math notranslate nohighlight">\(\mu \in\mathbb{R}^n\)</span>, and <span class="math notranslate nohighlight">\(\Sigma\in\mathbb{R}^{n\times n}\)</span> is positive definite.</p>
+<p><em>Special case</em>: A standard normal distribution <span class="math notranslate nohighlight">\(Y\sim\mathcal{N}_n(0, I_n)\)</span> is a multivariate normal distribution with <span class="math notranslate nohighlight">\(\mu = 0\)</span> and <span class="math notranslate nohighlight">\(\Sigma = I_n\)</span>.</p>
+<p><strong>Theorem 2.1</strong>: If <span class="math notranslate nohighlight">\(Y\sim\mathcal{N}_n(\mu, \Sigma)\)</span>, then <span class="math notranslate nohighlight">\(\mathbb{E}(Y) = \mu\)</span> and <span class="math notranslate nohighlight">\(\text{var}(Y) = \Sigma\)</span>.</p>
+<p><strong>Proof</strong>:</p>
+</section>
 </section>
 
 
@@ -56,7 +116,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="0_matrix_preparation.html">Matrix Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_vectors_of_random_variables.html">Vector of Random Variables</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Multivariate Normal Distribution</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multivariate Normal Distribution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moment-generating-function">Moment Generating Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multivariate-normal-distributions">Multivariate Normal Distributions</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="3_linear_regression.html">Linear Regression</a></li>
 </ul>
 
